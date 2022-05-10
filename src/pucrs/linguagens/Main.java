@@ -8,7 +8,12 @@ public class Main {
 
 
     public static void main(String[] args) {
+        BinaryOperatorExample.calcularFuncional();
+        System.out.println("--------------");
         FunctionExample.executarExemplo();
+        System.out.println("--------------");
+        MapperExample.mapperProcedural();
+        System.out.println("--------------");
     }
 
 }

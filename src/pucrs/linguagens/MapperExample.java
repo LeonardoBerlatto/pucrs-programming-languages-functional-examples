@@ -1,8 +1,14 @@
 package pucrs.linguagens;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class MapperExample {
+
 
     public static class Aluno {
         private String nome;
@@ -34,17 +40,34 @@ public class MapperExample {
         }
     }
 
-    public static void executar() {
-        Aluno alunoExmplo = new Aluno("João", "Silva", "12345");
+    static List<Aluno> alunos = Arrays.asList(
+            new Aluno("João", "Silva", "12345"),
+            new Aluno("Maria", "Silva", "54321"),
+            new Aluno("Ana", "Silva", "13579"),
+            new Aluno("Aldo", "Silva", "98765")
+    );
 
-        final var list = Collections.singletonList(alunoExmplo);
+    public static void mapperFuncional() {
+        List<AlunoDTO> alunoDTOSList = alunos.stream()
+                .map(MapperExample::createAlunoDTO)
+                .collect(Collectors.toList());
 
-        list.stream()
-                .map(MapperExample::getAlunoDTO)
-                .forEach(System.out::println);
+        alunoDTOSList.forEach(System.out::println);
     }
 
-    private static AlunoDTO getAlunoDTO(Aluno aluno) {
+    public static void mapperProcedural() {
+        List<AlunoDTO> alunoDTOList = new ArrayList<>();
+        for (Aluno aluno : alunos) {
+            AlunoDTO alunoDTO = createAlunoDTO(aluno);
+            alunoDTOList.add(alunoDTO);
+        }
+
+        for (AlunoDTO aluno : alunoDTOList) {
+            System.out.println(aluno);
+        }
+    }
+
+    private static AlunoDTO createAlunoDTO(Aluno aluno) {
         AlunoDTO alunoDTO = new AlunoDTO();
         alunoDTO.setNomeCompleto(aluno.nome + " " + aluno.sobrenome);
         alunoDTO.setMatricula(aluno.matricula);

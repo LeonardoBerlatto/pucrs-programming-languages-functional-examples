@@ -9,7 +9,7 @@ public class BinaryOperatorExample {
     public static final double TAXA_JUROS = 1.10;
 
 
-    static void calcularImpostoProcedural() {
+    public static void calcularImpostoProcedural() {
         final var list = Arrays.asList(10.0, 10.0, 10.0);
 
         Double total = 0.0;
@@ -25,7 +25,7 @@ public class BinaryOperatorExample {
         System.out.println(totalSimples);
     }
 
-    private static void calcularFuncional() {
+    public static void calcularFuncional() {
         final var list = Arrays.asList(10.0, 10.0, 10.0);
 
         System.out.println(calcularImposto(list, BinaryOperatorExample::calcularImpostoComposto));
